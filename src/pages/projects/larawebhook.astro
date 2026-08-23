@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="LaraWebhook — Proxynth" description="A Laravel package for reliable, idempotent and auditable webhooks.">
+  <main class="case-study">
+    <a class="back" href="/">← Back to the portfolio</a>
+    <p class="eyebrow">Open source project · PHP · Laravel</p>
+    <h1>LaraWebhook</h1>
+    <p class="lead">A Laravel package for treating webhooks as messages that may be delayed, duplicated or replayed.</p>
+    <section><h2>The problem</h2><p>Webhook integrations must handle signatures, retries, duplicates, transient failures and the need to investigate what actually happened.</p></section>
+    <section><h2>What it provides</h2><ul><li>multi-service signature validation;</li><li>idempotency protected against concurrent races;</li><li>synchronous and asynchronous retries;</li><li>replay and an audit trail separated from deduplication;</li><li>none, redacted or full payload storage;</li><li>dashboard, API, notifications and documentation.</li></ul></section>
+    <section><h2>What the project demonstrates</h2><p>The package was designed and implemented independently in approximately 80 hours, with unit, functional and architecture tests, PHPStan, Pint, Pest, CI and release automation.</p><p>It is a personal technical demonstration with no known external adoption.</p><a class="button" href="https://github.com/proxynth/LaraWebhook" target="_blank" rel="noreferrer">View the GitHub repository ↗</a></section>
+  </main>
+</Layout>
+
+<style>
+  .case-study { max-width:760px; margin:auto; padding:48px 28px 100px; }
+  .back { color:#9aa7b5; text-decoration:none; }
+  .back:hover, .button:hover { color:#63e6be; }
+  .eyebrow { margin-top:100px; color:#63e6be; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:700; }
+  h1 { font-size:clamp(3rem,8vw,6rem); line-height:.95; letter-spacing:-.07em; margin:20px 0; }
+  .lead { color:#aeb8c4; font-size:1.35rem; line-height:1.5; }
+  section { margin-top:70px; border-top:1px solid #26313c; padding-top:24px; }
+  h2 { font-size:1.5rem; letter-spacing:-.03em; }
+  p, li { color:#aeb8c4; line-height:1.75; }
+  li { margin:8px 0; }
+  .button { display:inline-block; margin-top:18px; padding:12px 16px; border:1px solid #315e50; border-radius:7px; color:#63e6be; text-decoration:none; }
+</style>

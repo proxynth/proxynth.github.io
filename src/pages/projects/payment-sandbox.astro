@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Payment Sandbox — Proxynth" description="A Go simulator for payment systems and distributed failures.">
+  <main class="case-study">
+    <a class="back" href="/">← Back to the portfolio</a>
+    <p class="eyebrow">Open source project · Go · Payments</p>
+    <h1>Payment Sandbox</h1>
+    <p class="lead">Testing a payment integration means more than checking HTTP status codes.</p>
+    <section><h2>The problem</h2><p>A payment may succeed while the HTTP response is lost. A webhook may arrive twice, late or out of order. Two concurrent capture requests may race. These situations are difficult to reproduce with a traditional HTTP mock.</p></section>
+    <section><h2>The approach</h2><p>Payment Sandbox models payment workflows and the asynchronous behaviours around them. Scenarios are deterministic, observable and reproducible, making it possible to test integrations without depending on a real provider.</p><ul><li>lost responses and retries with idempotency keys;</li><li>delayed, duplicated, invalid or out-of-order webhooks;</li><li>concurrent capture and refund races;</li><li>temporarily inconsistent states and deterministic replay.</li></ul></section>
+    <section><h2>Architecture choices</h2><p>The project uses a modular monolith, domain-driven design and targeted hexagonal architecture. The goal is not to distribute the system artificially, but to isolate boundaries that provide real value: domain, persistence, clock, randomness, durable jobs and HTTP delivery.</p></section>
+    <section><h2>Project status</h2><p>The project is currently in an early design and implementation phase. Public contracts and the scenario format are not stable yet.</p><a class="button" href="https://github.com/proxynth/payment-sandbox" target="_blank" rel="noreferrer">View the GitHub repository ↗</a></section>
+  </main>
+</Layout>
+
+<style>
+  .case-study { max-width:760px; margin:auto; padding:48px 28px 100px; }
+  .back { color:#9aa7b5; text-decoration:none; }
+  .back:hover, .button:hover { color:#63e6be; }
+  .eyebrow { margin-top:100px; color:#63e6be; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:700; }
+  h1 { font-size:clamp(3rem,8vw,6rem); line-height:.95; letter-spacing:-.07em; margin:20px 0; }
+  .lead { color:#aeb8c4; font-size:1.35rem; line-height:1.5; }
+  section { margin-top:70px; border-top:1px solid #26313c; padding-top:24px; }
+  h2 { font-size:1.5rem; letter-spacing:-.03em; }
+  p, li { color:#aeb8c4; line-height:1.75; }
+  li { margin:8px 0; }
+  .button { display:inline-block; margin-top:18px; padding:12px 16px; border:1px solid #315e50; border-radius:7px; color:#63e6be; text-decoration:none; }
+</style>
