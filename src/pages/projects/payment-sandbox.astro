@@ -2,44 +2,21 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Payment Sandbox — Thibaud Willm" description="Simulateur Go de systèmes de paiement et de défaillances distribuées.">
+<Layout title="Payment Sandbox — Thibaud Willm" description="A Go simulator for payment systems and distributed failures.">
   <main class="case-study">
-    <a class="back" href="/">← Retour au portfolio</a>
-    <p class="eyebrow">Projet open source · Go · Payments</p>
+    <a class="back" href="/">← Back to the portfolio</a>
+    <p class="eyebrow">Open source project · Go · Payments</p>
     <h1>Payment Sandbox</h1>
-    <p class="lead">Tester une intégration de paiement, ce n’est pas seulement vérifier des statuts HTTP.</p>
-
-    <section>
-      <h2>Le problème</h2>
-      <p>Un paiement peut réussir alors que la réponse HTTP est perdue. Un webhook peut arriver deux fois, en retard ou dans le désordre. Deux captures concurrentes peuvent entrer en collision. Ces situations sont difficiles à reproduire avec un mock HTTP classique.</p>
-    </section>
-
-    <section>
-      <h2>La réponse</h2>
-      <p>Payment Sandbox modélise les workflows métier du paiement et les comportements asynchrones qui les entourent. Les scénarios sont déterministes, observables et reproductibles, afin de tester les intégrations sans dépendre d’un prestataire réel.</p>
-      <ul>
-        <li>réponses perdues et retries avec idempotency key ;</li>
-        <li>webhooks retardés, dupliqués, invalides ou désordonnés ;</li>
-        <li>courses concurrentes sur capture et remboursement ;</li>
-        <li>états temporairement incohérents et replay déterministe.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Choix d’architecture</h2>
-      <p>Le projet utilise un modular monolith, du DDD et une architecture hexagonale ciblée. L’objectif n’est pas de distribuer artificiellement le système, mais d’isoler les frontières qui apportent une vraie valeur : domaine, persistance, horloge, génération d’aléas, jobs durables et livraison HTTP.</p>
-    </section>
-
-    <section>
-      <h2>État du projet</h2>
-      <p>Le projet est en phase de conception et d’implémentation précoce. Les contrats publics et le format des scénarios ne sont pas encore stabilisés.</p>
-      <a class="button" href="https://github.com/proxynth/payment-sandbox" target="_blank" rel="noreferrer">Voir le dépôt GitHub ↗</a>
-    </section>
+    <p class="lead">Testing a payment integration means more than checking HTTP status codes.</p>
+    <section><h2>The problem</h2><p>A payment may succeed while the HTTP response is lost. A webhook may arrive twice, late or out of order. Two concurrent capture requests may race. These situations are difficult to reproduce with a traditional HTTP mock.</p></section>
+    <section><h2>The approach</h2><p>Payment Sandbox models payment workflows and the asynchronous behaviours around them. Scenarios are deterministic, observable and reproducible, making it possible to test integrations without depending on a real provider.</p><ul><li>lost responses and retries with idempotency keys;</li><li>delayed, duplicated, invalid or out-of-order webhooks;</li><li>concurrent capture and refund races;</li><li>temporarily inconsistent states and deterministic replay.</li></ul></section>
+    <section><h2>Architecture choices</h2><p>The project uses a modular monolith, domain-driven design and targeted hexagonal architecture. The goal is not to distribute the system artificially, but to isolate boundaries that provide real value: domain, persistence, clock, randomness, durable jobs and HTTP delivery.</p></section>
+    <section><h2>Project status</h2><p>The project is currently in an early design and implementation phase. Public contracts and the scenario format are not stable yet.</p><a class="button" href="https://github.com/proxynth/payment-sandbox" target="_blank" rel="noreferrer">View the GitHub repository ↗</a></section>
   </main>
 </Layout>
 
 <style>
-  .case-study { max-width: 760px; margin: auto; padding: 48px 28px 100px; }
+  .case-study { max-width:760px; margin:auto; padding:48px 28px 100px; }
   .back { color:#9aa7b5; text-decoration:none; }
   .back:hover, .button:hover { color:#63e6be; }
   .eyebrow { margin-top:100px; color:#63e6be; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:700; }
