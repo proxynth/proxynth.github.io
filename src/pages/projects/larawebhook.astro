@@ -2,36 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="LaraWebhook — Thibaud Willm" description="Package Laravel pour des webhooks fiables, idempotents et auditables.">
+<Layout title="LaraWebhook — Thibaud Willm" description="A Laravel package for reliable, idempotent and auditable webhooks.">
   <main class="case-study">
-    <a class="back" href="/">← Retour au portfolio</a>
-    <p class="eyebrow">Projet open source · PHP · Laravel</p>
+    <a class="back" href="/">← Back to the portfolio</a>
+    <p class="eyebrow">Open source project · PHP · Laravel</p>
     <h1>LaraWebhook</h1>
-    <p class="lead">Un package Laravel conçu pour traiter les webhooks comme des messages potentiellement retardés, dupliqués ou rejoués.</p>
-
-    <section>
-      <h2>Le problème</h2>
-      <p>Les intégrations webhook doivent gérer les signatures, les retries, les doublons, les erreurs transitoires et la nécessité d’enquêter sur ce qui s’est réellement passé.</p>
-    </section>
-
-    <section>
-      <h2>Ce que le package propose</h2>
-      <ul>
-        <li>validation de signatures multi-services ;</li>
-        <li>idempotence protégée contre les courses concurrentes ;</li>
-        <li>retries synchrones et asynchrones ;</li>
-        <li>replay et audit trail séparés de la déduplication ;</li>
-        <li>stockage none, redacted ou full des payloads ;</li>
-        <li>dashboard, API, notifications et documentation.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Ce que le projet démontre</h2>
-      <p>Le projet a été conçu et implémenté seul en environ 80 heures, avec des tests unitaires, fonctionnels et d’architecture, PHPStan, Pint, Pest, CI et automatisation des releases.</p>
-      <p>Il s’agit d’une démonstration technique personnelle, sans adoption externe connue.</p>
-      <a class="button" href="https://github.com/proxynth/LaraWebhook" target="_blank" rel="noreferrer">Voir le dépôt GitHub ↗</a>
-    </section>
+    <p class="lead">A Laravel package for treating webhooks as messages that may be delayed, duplicated or replayed.</p>
+    <section><h2>The problem</h2><p>Webhook integrations must handle signatures, retries, duplicates, transient failures and the need to investigate what actually happened.</p></section>
+    <section><h2>What it provides</h2><ul><li>multi-service signature validation;</li><li>idempotency protected against concurrent races;</li><li>synchronous and asynchronous retries;</li><li>replay and an audit trail separated from deduplication;</li><li>none, redacted or full payload storage;</li><li>dashboard, API, notifications and documentation.</li></ul></section>
+    <section><h2>What the project demonstrates</h2><p>The package was designed and implemented independently in approximately 80 hours, with unit, functional and architecture tests, PHPStan, Pint, Pest, CI and release automation.</p><p>It is a personal technical demonstration with no known external adoption.</p><a class="button" href="https://github.com/proxynth/LaraWebhook" target="_blank" rel="noreferrer">View the GitHub repository ↗</a></section>
   </main>
 </Layout>
 
