@@ -5,13 +5,13 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Payment Sandbox — Proxynth" description="A Go simulator for payment systems and distributed failures.">
   <main class="case-study">
     <a class="back" href="/">← Back to the portfolio</a>
-    <p class="eyebrow">Private project · Go · Payments</p>
+    <p class="eyebrow">Open-source project · Go · Payments</p>
     <h1>Payment Sandbox</h1>
     <p class="lead">Testing a payment integration means more than checking HTTP status codes.</p>
     <section><h2>The problem</h2><p>A payment may succeed while the HTTP response is lost. A webhook may arrive twice, late or out of order. Two concurrent capture requests may race. These situations are difficult to reproduce with a traditional HTTP mock.</p></section>
     <section><h2>The approach</h2><p>Payment Sandbox models payment workflows and the asynchronous behaviours around them. Scenarios are deterministic, observable and reproducible, making it possible to test integrations without depending on a real provider.</p><ul><li>lost responses and retries with idempotency keys;</li><li>delayed, duplicated, invalid or out-of-order webhooks;</li><li>concurrent capture and refund races;</li><li>temporarily inconsistent states and deterministic replay.</li></ul></section>
     <section><h2>Architecture choices</h2><p>The project uses a modular monolith, domain-driven design and targeted hexagonal architecture. The goal is not to distribute the system artificially, but to isolate boundaries that provide real value: domain, persistence, clock, randomness, durable jobs and HTTP delivery.</p></section>
-    <section><h2>Project status</h2><p>The project is currently in an early design and implementation phase. Public contracts and the scenario format are not stable yet.</p><p class="private-note">The source code is currently private while the project is still being developed.</p></section>
+    <section><h2>Project status</h2><p>The project is public and under active development. Public contracts and the scenario format are not stable yet, and the project is not presented as production-ready software.</p><p class="public-note"><a class="button" href="https://github.com/proxynth/payment-sandbox">View the source on GitHub ↗</a></p></section>
   </main>
 </Layout>
 
@@ -27,5 +27,5 @@ import Layout from '../../layouts/Layout.astro';
   p, li { color:#aeb8c4; line-height:1.75; }
   li { margin:8px 0; }
   .button { display:inline-block; margin-top:18px; padding:12px 16px; border:1px solid #315e50; border-radius:7px; color:#63e6be; text-decoration:none; }
-  .private-note { margin-top:18px; padding:14px 16px; border-left:3px solid #315e50; background:#101b18; }
+  .public-note { margin-top:18px; }
 </style>
