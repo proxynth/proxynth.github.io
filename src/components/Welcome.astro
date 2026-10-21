@@ -1,112 +1,202 @@
+---
+import LanguageSwitch from './LanguageSwitch.astro';
+
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+const isFrench = lang === 'fr';
+const copy = isFrench ? {
+  navProjects: 'Projets',
+  navBackground: 'Parcours',
+  navApproach: 'IA',
+  eyebrow: 'Ingénieur backend senior · PHP/Laravel · Go',
+  headline: 'Je conçois des systèmes backend compréhensibles, testables et exploitables en confiance.',
+  introOne: 'Depuis plus de dix ans, je construis et fais évoluer des systèmes backend dans des domaines variés : presse numérique et e-commerce, recharge de véhicules électriques, communautés en ligne, plateformes événementielles et SaaS. Au fil de ces contextes, mon travail s’est de plus en plus concentré sur les intégrations, la maîtrise des évolutions et la fiabilité en production.',
+  introTwo: 'Plus récemment, j’ai travaillé sur les domaines du paiement et des abonnements, des services Go, des infrastructures cloud et des flux de données traçables entre plusieurs produits SaaS.',
+  projectsCta: 'Voir les projets',
+  githubCta: 'Mon GitHub ↗',
+  years: '10 ans',
+  yearsText: 'de développement logiciel',
+  stack: 'Go + PHP',
+  stackText: 'backend en production',
+  systems: 'Systèmes backend',
+  systemsText: 'intégrations et fiabilité',
+  ic: 'IC',
+  icText: 'contribution technique sans management',
+  selectedEyebrow: 'Projets choisis',
+  selectedTitle: 'Des projets qui montrent ma façon de penser.',
+  paymentTag: 'Go · Paiements · Open source',
+  paymentDescription: 'Un simulateur de systèmes de paiement conçu pour tester les intégrations face aux retries, réponses perdues, webhooks dupliqués ou désordonnés et opérations concurrentes.',
+  paymentBullets: ['Scénarios déterministes et reproductibles', 'Événements asynchrones, idempotence et rejeu', 'Monolithe modulaire, DDD et architecture hexagonale ciblée'],
+  readCase: 'Lire l’étude de cas ↗',
+  webhookTag: 'PHP · Laravel · Paiements',
+  webhookDescription: 'Un package Laravel conçu de zéro pour traiter des webhooks multi-services avec signatures, idempotence, retries, rejeu, audit et stockage configurable des payloads.',
+  webhookBullets: ['Tests unitaires, fonctionnels et d’architecture', 'CI, documentation et analyse statique', 'Réalisé de façon indépendante en environ 80 heures'],
+  backgroundEyebrow: 'Mon parcours',
+  backgroundTitle: 'Dix ans de backend, au fil de produits et de domaines différents.',
+  buildTitle: 'Construire des produits',
+  buildText: 'J’ai construit et fait évoluer des backends pour la presse numérique et l’e-commerce, des communautés en ligne, des plateformes événementielles, la recharge électrique et des produits SaaS.',
+  saferTitle: 'Sécuriser les évolutions',
+  saferText: 'Dans ces contextes, j’ai travaillé sur des migrations, du refactoring, des tests automatisés, de la CI/CD et des environnements de développement reproductibles pour améliorer la maintenabilité et la fiabilité en production.',
+  complexityTitle: 'Prendre en charge la complexité',
+  complexityText: 'Plus récemment, mon travail a porté sur les domaines du paiement et des abonnements, les intégrations entre produits, des services Go, les infrastructures cloud et des flux de données traçables.',
+  aiEyebrow: 'Ingénierie avec des agents de développement',
+  aiTitle: 'Déléguer davantage d’exécution ne délègue pas les décisions d’ingénierie.',
+  aiIntro: 'Dans mon travail professionnel, j’utilise des agents de développement pour explorer des bases de code, refactorer, implémenter et documenter. Les tests, l’analyse statique et la revue humaine encadrent le code généré.',
+  intentTitle: 'Partir de l’intention',
+  intentText: 'Un agent peut produire une implémentation plausible à partir d’un brief incomplet. Il faut d’abord expliciter les objectifs, les invariants métier et les questions encore ouvertes.',
+  authorityTitle: 'Définir leur périmètre d’autorité',
+  authorityText: 'Les agents peuvent proposer et exécuter dans des limites claires. Les décisions métier, les arbitrages d’architecture et les permissions restent des responsabilités d’ingénierie explicites.',
+  verifyTitle: 'Vérifier et apprendre',
+  verifyText: 'Les tests et l’analyse statique apportent des vérifications indépendantes ; la revue humaine reste essentielle. J’explore aussi comment préserver dans le temps les raisons des décisions et leurs contraintes, pour que les découvertes et corrections servent aux travaux suivants.',
+  footerRole: 'Proxynth · Ingénieur backend senior',
+  moreLink: 'Écrits techniques et études de cas →',
+} : {
+  navProjects: 'Projects',
+  navBackground: 'Background',
+  navApproach: 'AI',
+  eyebrow: 'Senior Backend Engineer · PHP/Laravel · Go',
+  headline: 'I build backend systems that can be understood, tested and operated with confidence.',
+  introOne: 'Over ten years building and evolving backend systems across digital publishing and e-commerce, EV charging, online communities, event platforms and SaaS. Across these contexts, my work has increasingly focused on integrations, safe change and reliable production systems.',
+  introTwo: 'More recently, I have worked on payment and subscription domains, Go services, cloud infrastructure and traceable data workflows across multiple SaaS products.',
+  projectsCta: 'See the projects',
+  githubCta: 'My GitHub ↗',
+  years: '10 years',
+  yearsText: 'of software development',
+  stack: 'Go + PHP',
+  stackText: 'production backend',
+  systems: 'Backend systems',
+  systemsText: 'integrations and reliability',
+  ic: 'IC',
+  icText: 'technical ownership without management',
+  selectedEyebrow: 'Selected work',
+  selectedTitle: 'Projects that show how I think.',
+  paymentTag: 'Go · Payments · Open source',
+  paymentDescription: 'A payment systems simulator designed to test integrations against retries, lost responses, duplicated or out-of-order webhooks and concurrent operations.',
+  paymentBullets: ['Deterministic and reproducible scenarios', 'Asynchronous events, idempotency and replay', 'Modular monolith, DDD and targeted hexagonal architecture'],
+  readCase: 'Read the case study ↗',
+  webhookTag: 'PHP · Laravel · Payments',
+  webhookDescription: 'A Laravel package built from scratch to process multi-service webhooks with signatures, idempotency, retries, replay, audit trails and configurable payload storage.',
+  webhookBullets: ['Unit, functional and architecture tests', 'CI, documentation and static analysis', 'Built independently in approximately 80 hours'],
+  backgroundEyebrow: 'My background',
+  backgroundTitle: 'A decade of backend engineering across different products.',
+  buildTitle: 'Building products',
+  buildText: 'I have built and evolved backends for digital publishing and e-commerce, online communities, event platforms, EV charging and SaaS products.',
+  saferTitle: 'Making change safer',
+  saferText: 'Across those contexts, I have worked on migrations, refactoring, automated tests, CI/CD and reproducible development environments to improve maintainability and production reliability.',
+  complexityTitle: 'Taking on complexity',
+  complexityText: 'More recently, my work has included payment and subscription domains, integrations across products, Go services, cloud infrastructure and traceable data workflows.',
+  aiEyebrow: 'Engineering with coding agents',
+  aiTitle: 'More execution still needs clear engineering authority.',
+  aiIntro: 'I use coding agents in professional work to explore codebases, refactor, implement and document. Tests, static analysis and human review remain part of the workflow around generated code.',
+  intentTitle: 'Start from intent',
+  intentText: 'Agents can produce a plausible implementation of an incomplete brief. Goals, domain invariants and open questions need to be made explicit first.',
+  authorityTitle: 'Bound the authority',
+  authorityText: 'Agents can propose and execute within clear constraints. Domain decisions, architectural trade-offs and permissions remain explicit engineering responsibilities.',
+  verifyTitle: 'Verify and learn',
+  verifyText: 'Tests and static analysis provide independent checks; human review remains essential. I am exploring how to preserve decision rationale and constraints over time, so discoveries and corrections can inform future work.',
+  footerRole: 'Proxynth · Senior Backend Engineer',
+  moreLink: 'More technical writing and case studies →',
+};
+---
+
 <main class="page">
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="/"><img src="/assets/brand/proxynth_avatar_32px.png" alt="" width="28" height="28" />Proxynth</a>
+  <nav class="nav" aria-label={isFrench ? 'Navigation principale' : 'Main navigation'}>
+    <a class="brand" href={isFrench ? '/fr/' : '/'}><img src="/assets/brand/proxynth_avatar_32px.png" alt="" width="28" height="28" />Proxynth</a>
     <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#profile">Background</a>
-      <a href="#approach">AI &amp; Engineering</a>
+      <a href="#projects">{copy.navProjects}</a>
+      <a href="#profile">{copy.navBackground}</a>
+      <a href="#approach">{copy.navApproach}</a>
       <a href="https://github.com/proxynth" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <LanguageSwitch lang={lang} />
     </div>
   </nav>
 
   <section class="hero">
-    <p class="eyebrow">Senior Backend Engineer · PHP/Laravel · Go</p>
-    <h1>I build backend systems that can be <em>understood, tested and operated with confidence.</em></h1>
-    <p class="intro">
-      Over ten years building and evolving backend systems across digital publishing and e-commerce,
-      EV charging, online communities, event platforms and SaaS. Across these contexts, my work has
-      increasingly focused on integrations, safe change and reliable production systems.
-    </p>
-    <p class="intro">
-      More recently, I have worked on payment and subscription domains, Go services, cloud
-      infrastructure and traceable data workflows across multiple SaaS products.
-    </p>
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.headline}</h1>
+    <p class="intro">{copy.introOne}</p>
+    <p class="intro">{copy.introTwo}</p>
     <div class="actions">
-      <a class="button primary" href="#projects">See the projects</a>
-      <a class="button secondary" href="https://github.com/proxynth" target="_blank" rel="noreferrer">My GitHub ↗</a>
+      <a class="button primary" href="#projects">{copy.projectsCta}</a>
+      <a class="button secondary" href="https://github.com/proxynth" target="_blank" rel="noreferrer">{copy.githubCta}</a>
     </div>
   </section>
 
-  <section class="signal-grid" aria-label="Positioning">
-    <article><strong>10 years</strong><span>of software development</span></article>
-    <article><strong>Go + PHP</strong><span>production backend</span></article>
-    <article><strong>Backend systems</strong><span>integrations and reliability</span></article>
-    <article><strong>IC</strong><span>ownership without management</span></article>
+  <section class="signal-grid" aria-label={isFrench ? 'Positionnement' : 'Positioning'}>
+    <article><strong>{copy.years}</strong><span>{copy.yearsText}</span></article>
+    <article><strong>{copy.stack}</strong><span>{copy.stackText}</span></article>
+    <article><strong>{copy.systems}</strong><span>{copy.systemsText}</span></article>
+    <article><strong>{copy.ic}</strong><span>{copy.icText}</span></article>
   </section>
 
   <section id="projects" class="section">
     <div class="section-heading">
-      <p class="eyebrow">Selected work</p>
-      <h2>Projects that show how I think.</h2>
+      <p class="eyebrow">{copy.selectedEyebrow}</p>
+      <h2>{copy.selectedTitle}</h2>
     </div>
-
     <div class="projects">
       <article class="project featured">
-        <div class="project-top"><span>01</span><span>Go · Payments · Open source</span></div>
+        <div class="project-top"><span>01</span><span>{copy.paymentTag}</span></div>
         <h3>Payment Sandbox</h3>
-        <p>
-          A payment systems simulator designed to test integrations against retries, lost responses,
-          duplicated or out-of-order webhooks and concurrent operations.
-        </p>
-        <ul><li>Deterministic and reproducible scenarios</li><li>Asynchronous events, idempotency and replay</li><li>Modular monolith, DDD and targeted hexagonal architecture</li></ul>
-        <a class="project-link" href="/projects/payment-sandbox">Read the case study ↗</a>
+        <p>{copy.paymentDescription}</p>
+        <ul>{copy.paymentBullets.map((bullet) => <li>{bullet}</li>)}</ul>
+        <a class="project-link" href={isFrench ? '/fr/projects/payment-sandbox' : '/projects/payment-sandbox'}>{copy.readCase}</a>
       </article>
-
       <article class="project">
-        <div class="project-top"><span>02</span><span>PHP · Laravel · Payments</span></div>
+        <div class="project-top"><span>02</span><span>{copy.webhookTag}</span></div>
         <h3>LaraWebhook</h3>
-        <p>
-          A Laravel package built from scratch to process multi-service webhooks with signatures,
-          idempotency, retries, replay, audit trails and configurable payload storage.
-        </p>
-        <ul><li>Unit, functional and architecture tests</li><li>CI, documentation and static analysis</li><li>Built independently in approximately 80 hours</li></ul>
-        <a class="project-link" href="/projects/larawebhook">Read the case study ↗</a>
+        <p>{copy.webhookDescription}</p>
+        <ul>{copy.webhookBullets.map((bullet) => <li>{bullet}</li>)}</ul>
+        <a class="project-link" href={isFrench ? '/fr/projects/larawebhook' : '/projects/larawebhook'}>{copy.readCase}</a>
       </article>
     </div>
   </section>
 
   <section id="profile" class="section profile">
     <div class="section-heading">
-      <p class="eyebrow">My background</p>
-      <h2>A decade of backend engineering across different products.</h2>
+      <p class="eyebrow">{copy.backgroundEyebrow}</p>
+      <h2>{copy.backgroundTitle}</h2>
     </div>
     <div class="profile-grid">
-      <div><strong>Building products</strong><p>I have built and evolved backends for publishing and e-commerce, online communities, event platforms, EV charging and SaaS products.</p></div>
-      <div><strong>Making change safer</strong><p>Across those contexts, I have worked on migrations, refactoring, automated tests, CI/CD and reproducible development environments to improve maintainability and production reliability.</p></div>
-      <div><strong>Taking on complexity</strong><p>More recently, my work has included payment and subscription domains, integrations across products, Go services, cloud infrastructure and traceable data workflows.</p></div>
+      <div><strong>{copy.buildTitle}</strong><p>{copy.buildText}</p></div>
+      <div><strong>{copy.saferTitle}</strong><p>{copy.saferText}</p></div>
+      <div><strong>{copy.complexityTitle}</strong><p>{copy.complexityText}</p></div>
     </div>
   </section>
 
   <section id="approach" class="approach section">
     <div class="section-heading">
-      <p class="eyebrow">Engineering with coding agents</p>
-      <h2>More execution still needs clear engineering authority.</h2>
-      <p class="intro">I use coding agents in professional work to explore codebases, refactor, implement and document. Tests, static analysis and human review remain part of the workflow around generated code.</p>
+      <p class="eyebrow">{copy.aiEyebrow}</p>
+      <h2>{copy.aiTitle}</h2>
+      <p class="intro">{copy.aiIntro}</p>
     </div>
     <div class="principles">
-      <div><strong>Start from intent</strong><p>Agents can produce a plausible implementation of an incomplete brief. Goals, domain invariants and open questions need to be made explicit first.</p></div>
-      <div><strong>Bound the authority</strong><p>Agents can propose and execute within clear constraints. Domain decisions, architectural trade-offs and permissions remain explicit engineering responsibilities.</p></div>
-      <div><strong>Verify and learn</strong><p>Tests and static analysis provide independent checks; human review remains essential. I am exploring how to preserve decision rationale and constraints over time, so discoveries and corrections can inform future work.</p></div>
+      <div><strong>{copy.intentTitle}</strong><p>{copy.intentText}</p></div>
+      <div><strong>{copy.authorityTitle}</strong><p>{copy.authorityText}</p></div>
+      <div><strong>{copy.verifyTitle}</strong><p>{copy.verifyText}</p></div>
     </div>
   </section>
 
   <footer>
-    <span>Proxynth · Senior Backend Engineer</span>
+    <span>{copy.footerRole}</span>
     <a href="https://github.com/proxynth" target="_blank" rel="noreferrer">github.com/proxynth ↗</a>
+    <a href={isFrench ? '/fr/' : '/'}>{copy.moreLink}</a>
   </footer>
 </main>
 
 <style>
-  .page { max-width: 1120px; margin: auto; padding: 0 28px; }
+  .page { max-width:1120px; margin:auto; padding:0 28px; }
   .nav { display:flex; justify-content:space-between; align-items:center; padding:28px 0; border-bottom:1px solid #202832; }
-  .brand { display:flex; align-items:center; gap:9px; font-size:1.05rem; font-weight:800; letter-spacing:-.04em; text-decoration:none; }
+  .brand { display:flex; align-items:center; gap:9px; font-size:1.05rem; font-weight:800; letter-spacing:-.04em; text-decoration:none; white-space:nowrap; }
   .brand img { display:block; border-radius:50%; object-fit:cover; }
-  .eyebrow { color:#63e6be; }
-  .nav-links { display:flex; gap:24px; color:#9aa7b5; font-size:.9rem; }
-  .nav-links a, .project-link, footer a { text-decoration:none; }
-  .nav-links a:hover, .project-link:hover, footer a:hover { color:#63e6be; }
+  .eyebrow { color:#63e6be; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:700; }
+  .nav-links { display:flex; align-items:center; gap:18px; color:#9aa7b5; font-size:.88rem; }
+  .nav-links > a, .project-link, footer a { text-decoration:none; }
+  .nav-links > a:hover, .project-link:hover, footer a:hover { color:#63e6be; }
   .hero { max-width:860px; padding:112px 0 84px; }
-  .eyebrow { text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:700; }
   h1 { max-width:900px; margin:20px 0; font-size:clamp(2.8rem, 7vw, 6.4rem); line-height:.98; letter-spacing:-.07em; }
   h1 em { color:#9aa7b5; font-style:normal; }
   .intro { max-width:680px; color:#aeb8c4; font-size:1.18rem; line-height:1.65; }
@@ -120,12 +210,12 @@
   .signal-grid strong { display:block; font-size:1.35rem; }
   .signal-grid span { display:block; color:#7f8b98; font-size:.85rem; margin-top:6px; }
   .section { padding:110px 0 0; }
-  .section-heading { max-width:620px; margin-bottom:36px; }
+  .section-heading { max-width:680px; margin-bottom:36px; }
   h2 { font-size:clamp(2rem,4vw,3.4rem); line-height:1.05; letter-spacing:-.05em; margin:14px 0 0; }
   .projects { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
   .project { padding:28px; border:1px solid #26313c; border-radius:10px; background:#10161d; }
   .featured { grid-column:span 2; background:linear-gradient(135deg,#13251f,#10161d 60%); border-color:#315e50; }
-  .project-top { display:flex; justify-content:space-between; color:#71808f; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; }
+  .project-top { display:flex; justify-content:space-between; color:#71808f; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; gap:16px; }
   h3 { font-size:1.8rem; margin:28px 0 12px; letter-spacing:-.04em; }
   .project p, .principles p, .profile-grid p { color:#aeb8c4; line-height:1.65; }
   .project ul { padding-left:20px; color:#c4ccd5; line-height:1.8; }
@@ -133,14 +223,16 @@
   .profile-grid, .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
   .profile-grid > div, .principles > div { padding:24px 0; border-top:1px solid #33404c; }
   .profile-grid strong, .principles strong { font-size:1.1rem; }
-  footer { display:flex; justify-content:space-between; gap:20px; margin:110px 0 28px; padding-top:24px; border-top:1px solid #202832; color:#7f8b98; font-size:.85rem; }
-  @media (max-width: 700px) {
+  footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px; margin:110px 0 28px; padding-top:24px; border-top:1px solid #202832; color:#7f8b98; font-size:.85rem; }
+  @media (max-width: 760px) {
     .page { padding:0 18px; }
-    .nav-links { gap:12px; font-size:.8rem; }
+    .nav { align-items:flex-start; gap:14px; }
+    .nav-links { justify-content:flex-end; flex-wrap:wrap; gap:8px 12px; font-size:.76rem; }
     .hero { padding:76px 0 60px; }
     .signal-grid, .projects, .profile-grid, .principles { grid-template-columns:1fr; }
     .signal-grid article { border-right:0; border-bottom:1px solid #202832; }
     .featured { grid-column:auto; }
+    .project-top { flex-direction:column; gap:6px; }
     footer { flex-direction:column; margin-top:76px; }
   }
 </style>
