@@ -2,25 +2,53 @@
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'en' | 'fr';
 }
 
 const {
   title = 'Proxynth — Senior Backend Engineer',
   description = 'Senior Backend Engineer focused on complex systems, payments and reliability.',
+  lang = 'en',
 } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const englishPath = currentPath.replace(/^\/fr(?=\/|$)/, '') || '/';
+const frenchPath = englishPath === '/' ? '/fr/' : `/fr${englishPath}`;
+const origin = Astro.site?.origin ?? 'https://proxynth.github.io';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={`${origin}${currentPath}`} />
+    <link rel="alternate" hreflang="en" href={`${origin}${englishPath}`} />
+    <link rel="alternate" hreflang="fr" href={`${origin}${frenchPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${origin}${englishPath}`} />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/proxynth_avatar_32px.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/assets/brand/proxynth_avatar_64px.png" />
     <link rel="icon" type="image/png" sizes="128x128" href="/assets/brand/proxynth_avatar_128px.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/proxynth_avatar_512px.png" />
     <title>{title}</title>
+    <script is:inline>
+      if (window.location.pathname === '/') {
+        try {
+          const savedLocale = localStorage.getItem('proxynth-locale');
+          const browserLanguages = navigator.languages?.length
+            ? navigator.languages
+            : [navigator.language];
+          const preferredLocale = browserLanguages
+            .map((language) => language.toLowerCase().split('-')[0])
+            .find((language) => language === 'fr' || language === 'en');
+
+          if (savedLocale === 'fr' || (savedLocale !== 'en' && preferredLocale === 'fr')) {
+            window.location.replace('/fr/');
+          }
+        } catch {}
+      }
+    </script>
   </head>
   <body>
     <slot />
