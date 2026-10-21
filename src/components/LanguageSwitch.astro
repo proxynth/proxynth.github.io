@@ -1,0 +1,33 @@
+---
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+const englishPath = Astro.url.pathname.replace(/^\/fr(?=\/|$)/, '') || '/';
+const frenchPath = englishPath === '/' ? '/fr/' : `/fr${englishPath}`;
+const label = lang === 'fr' ? 'Choisir la langue' : 'Choose language';
+---
+
+<nav class="language-switch" aria-label={label}>
+  <a href={englishPath} data-locale="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+  <span aria-hidden="true">·</span>
+  <a href={frenchPath} data-locale="fr" aria-current={lang === 'fr' ? 'page' : undefined}>FR</a>
+</nav>
+
+<script is:inline>
+  document.querySelectorAll('[data-locale]').forEach((link) => {
+    link.addEventListener('click', () => {
+      try {
+        localStorage.setItem('proxynth-locale', link.getAttribute('data-locale'));
+      } catch {}
+    });
+  });
+</script>
+
+<style>
+  .language-switch { display:flex; align-items:center; gap:7px; white-space:nowrap; font-size:.78rem; }
+  .language-switch a { color:#9aa7b5; text-decoration:none; }
+  .language-switch a:hover, .language-switch a[aria-current="page"] { color:#63e6be; }
+  .language-switch span { color:#52606d; }
+</style>
