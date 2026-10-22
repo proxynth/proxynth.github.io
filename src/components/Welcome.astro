@@ -104,7 +104,7 @@ const copy = isFrench ? {
 
 <main class="page">
   <nav class="nav" aria-label={isFrench ? 'Navigation principale' : 'Main navigation'}>
-    <a class="brand" href={isFrench ? '/fr/' : '/'}><img src="/assets/brand/proxynth_avatar_32px.png" alt="" width="28" height="28" />Proxynth</a>
+    <a class="brand" href={isFrench ? '/fr/' : '/en/'}><img src="/assets/brand/proxynth_avatar_32px.png" alt="" width="28" height="28" />Proxynth</a>
     <div class="nav-links">
       <a href="#projects">{copy.navProjects}</a>
       <a href="#profile">{copy.navBackground}</a>
@@ -143,14 +143,14 @@ const copy = isFrench ? {
         <h3>Payment Sandbox</h3>
         <p>{copy.paymentDescription}</p>
         <ul>{copy.paymentBullets.map((bullet) => <li>{bullet}</li>)}</ul>
-        <a class="project-link" href={isFrench ? '/fr/projects/payment-sandbox' : '/projects/payment-sandbox'}>{copy.readCase}</a>
+        <a class="project-link" href={isFrench ? '/fr/projects/payment-sandbox' : '/en/projects/payment-sandbox'}>{copy.readCase}</a>
       </article>
       <article class="project">
         <div class="project-top"><span>02</span><span>{copy.webhookTag}</span></div>
         <h3>LaraWebhook</h3>
         <p>{copy.webhookDescription}</p>
         <ul>{copy.webhookBullets.map((bullet) => <li>{bullet}</li>)}</ul>
-        <a class="project-link" href={isFrench ? '/fr/projects/larawebhook' : '/projects/larawebhook'}>{copy.readCase}</a>
+        <a class="project-link" href={isFrench ? '/fr/projects/larawebhook' : '/en/projects/larawebhook'}>{copy.readCase}</a>
       </article>
     </div>
   </section>
@@ -183,7 +183,7 @@ const copy = isFrench ? {
   <footer>
     <span>{copy.footerRole}</span>
     <a href="https://github.com/proxynth" target="_blank" rel="noreferrer">github.com/proxynth ↗</a>
-    <a href={isFrench ? '/fr/' : '/'}>{copy.moreLink}</a>
+    <a href={isFrench ? '/fr/' : '/en/'}>{copy.moreLink}</a>
   </footer>
 </main>
 
