@@ -1,12 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
   lang="en"
-  title="Proxynth — Senior Backend Engineer"
-  description="Senior Backend Engineer focused on complex systems, payments and reliability."
+  autoLocale
+  title="Proxynth"
+  description="Portfolio of a senior backend engineer working on reliable production systems."
 >
-  <Welcome lang="en" />
+  <main class="chooser">
+    <img src="/assets/brand/proxynth_avatar_128px.png" alt="" width="72" height="72" />
+    <h1>Proxynth</h1>
+    <p>Choose your language · Choisissez votre langue</p>
+    <LanguageSwitch />
+    <noscript>
+      <p><a href="/fr/">Français</a> · <a href="/en/">English</a></p>
+    </noscript>
+  </main>
 </Layout>
+
+<style>
+  .chooser { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:14px; text-align:center; padding:24px; color:#aeb8c4; }
+  img { border-radius:50%; }
+  h1 { color:#edf2f7; margin:0; font-size:clamp(2.5rem,8vw,4rem); letter-spacing:-.06em; }
+  p { margin:0; }
+  .chooser :global(.language-switch) { font-size:1rem; gap:12px; margin-top:8px; }
+</style>
