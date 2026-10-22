@@ -3,17 +3,20 @@ interface Props {
   title?: string;
   description?: string;
   lang?: 'en' | 'fr';
+  autoLocale?: boolean;
 }
 
 const {
   title = 'Proxynth — Senior Backend Engineer',
   description = 'Senior Backend Engineer focused on complex systems, payments and reliability.',
   lang = 'en',
+  autoLocale = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-const englishPath = currentPath.replace(/^\/fr(?=\/|$)/, '') || '/';
-const frenchPath = englishPath === '/' ? '/fr/' : `/fr${englishPath}`;
+const contentPath = currentPath.replace(/^\/(?:fr|en)(?=\/|$)/, '') || '/';
+const englishPath = contentPath === '/' ? '/en/' : `/en${contentPath}`;
+const frenchPath = contentPath === '/' ? '/fr/' : `/fr${contentPath}`;
 const origin = Astro.site?.origin ?? 'https://proxynth.github.io';
 ---
 
@@ -23,32 +26,34 @@ const origin = Astro.site?.origin ?? 'https://proxynth.github.io';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <link rel="canonical" href={`${origin}${currentPath}`} />
-    <link rel="alternate" hreflang="en" href={`${origin}${englishPath}`} />
-    <link rel="alternate" hreflang="fr" href={`${origin}${frenchPath}`} />
-    <link rel="alternate" hreflang="x-default" href={`${origin}${englishPath}`} />
+    {autoLocale ? <meta name="robots" content="noindex" /> : <>
+      <link rel="canonical" href={`${origin}${lang === 'fr' ? frenchPath : englishPath}`} />
+      <link rel="alternate" hreflang="en" href={`${origin}${englishPath}`} />
+      <link rel="alternate" hreflang="fr" href={`${origin}${frenchPath}`} />
+      <link rel="alternate" hreflang="x-default" href={`${origin}${englishPath}`} />
+    </>}
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/proxynth_avatar_32px.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/assets/brand/proxynth_avatar_64px.png" />
     <link rel="icon" type="image/png" sizes="128x128" href="/assets/brand/proxynth_avatar_128px.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/proxynth_avatar_512px.png" />
     <title>{title}</title>
-    <script is:inline>
+    {autoLocale && <script is:inline>
       if (window.location.pathname === '/') {
+        let locale = null;
         try {
-          const savedLocale = localStorage.getItem('proxynth-locale');
-          const browserLanguages = navigator.languages?.length
-            ? navigator.languages
-            : [navigator.language];
-          const preferredLocale = browserLanguages
-            .map((language) => language.toLowerCase().split('-')[0])
-            .find((language) => language === 'fr' || language === 'en');
-
-          if (savedLocale === 'fr' || (savedLocale !== 'en' && preferredLocale === 'fr')) {
-            window.location.replace('/fr/');
-          }
+          const saved = localStorage.getItem('proxynth-locale');
+          if (saved === 'fr' || saved === 'en') locale = saved;
         } catch {}
+
+        if (!locale) {
+          const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+          locale = browserLanguages
+            .map((language) => language.toLowerCase().split('-')[0])
+            .find((language) => language === 'fr' || language === 'en') || 'fr';
+        }
+        window.location.replace(locale === 'fr' ? '/fr/' : '/en/');
       }
-    </script>
+    </script>}
   </head>
   <body>
     <slot />
