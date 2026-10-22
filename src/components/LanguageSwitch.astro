@@ -1,12 +1,13 @@
 ---
 interface Props {
-  lang: 'en' | 'fr';
+  lang?: 'en' | 'fr';
 }
 
 const { lang } = Astro.props;
-const englishPath = Astro.url.pathname.replace(/^\/fr(?=\/|$)/, '') || '/';
-const frenchPath = englishPath === '/' ? '/fr/' : `/fr${englishPath}`;
-const label = lang === 'fr' ? 'Choisir la langue' : 'Choose language';
+const contentPath = Astro.url.pathname.replace(/^\/(?:fr|en)(?=\/|$)/, '') || '/';
+const englishPath = contentPath === '/' ? '/en/' : `/en${contentPath}`;
+const frenchPath = contentPath === '/' ? '/fr/' : `/fr${contentPath}`;
+const label = lang === 'fr' ? 'Choisir la langue' : lang === 'en' ? 'Choose language' : 'Langue / Language';
 ---
 
 <nav class="language-switch" aria-label={label}>
